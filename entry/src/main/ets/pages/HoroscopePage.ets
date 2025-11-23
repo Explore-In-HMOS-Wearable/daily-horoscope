@@ -1,5 +1,4 @@
 import calculateHoroscope from '../utils/Utils';
-import { router } from '@kit.ArkUI';
 import { IHoroscope } from '../model/Horoscope';
 import { sendDailyHoroscopeNotification } from '../utils/Notification';
 
@@ -87,8 +86,8 @@ export struct HoroscopePage {
           .onClick(async () => {
             AppStorage.setOrCreate('zodiac', this.yourHoroscope.sign);
             sendDailyHoroscopeNotification(this.yourHoroscope.sign);
-            router.pushUrl({
-              url: 'pages/SwiperPage',
+            this.getUIContext().getRouter().pushUrl({
+              url:'pages/SwiperPage',
               params: this.yourHoroscope
             })
           })

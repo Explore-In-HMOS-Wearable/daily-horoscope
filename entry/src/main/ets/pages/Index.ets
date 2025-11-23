@@ -1,4 +1,3 @@
-import { router } from '@kit.ArkUI'
 import { getPermission } from '../utils/Utils'
 import common from '@ohos.app.ability.common'
 
@@ -20,8 +19,8 @@ struct Index {
       Text('Enable notifications to see your daily comment each morning!')
         .margin(({left:12, right:12}))
     }.onClick(() => {
-      router.pushUrl({
-        url: 'pages/HoroscopePage'
+      this.getUIContext().getRouter().pushUrl({
+        url:'pages/HoroscopePage'
       })
     })
     .justifyContent(FlexAlign.Center)

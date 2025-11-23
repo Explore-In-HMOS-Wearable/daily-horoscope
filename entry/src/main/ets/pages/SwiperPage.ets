@@ -1,7 +1,6 @@
 import { HoroscopeComponent } from '../components/HoroscopeComponent';
 import { IHoroscope } from '../model/Horoscope';
 import { HoroscopeViewModel } from '../viewmodel/HoroscopeViewModel';
-import router from '@ohos.router';
 
 @Entry
 @Component
@@ -12,7 +11,7 @@ export struct SwiperPage {
   horoscope: IHoroscope = {} as IHoroscope;
 
   aboutToAppear(): void {
-    const horoscopeParams = router.getParams() as IHoroscope
+    const horoscopeParams = this.getUIContext().getRouter().getParams() as IHoroscope
     this.horoscope = horoscopeParams
 
     this.viewModel.listHoroscopes().then((result: IHoroscope[]) => {
