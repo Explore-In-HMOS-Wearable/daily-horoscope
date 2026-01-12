@@ -31,7 +31,6 @@ export default async function calculateHoroscope(selectedDay: number, selectedMo
 
 export async function getPermission(context: common.UIAbilityContext): Promise<void> {
   notificationManager.isNotificationEnabled().then((data: boolean) => {
-    Logger.info( TAG, 'isNotificationEnabled success, data: ' + JSON.stringify(data));
     if (!data) {
       notificationManager.requestEnableNotification(context).then(() => {
         Logger.info( TAG, `[ANS] requestEnableNotification success`);

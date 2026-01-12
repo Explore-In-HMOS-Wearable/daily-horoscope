@@ -21,7 +21,9 @@ Daily Horoscope App is a horoscope application that saves user's horoscope and s
 - By swiping other zodiac's descriptions can be read.
 - Daily notifications come to the wearable device.
 
-# Tech Stack
+# Technology
+ 
+## Stack
 
 - **Languages**: ArkTS, ArkUI
 - **Frameworks**: HarmonyOS SDK 5.0.2(18)
@@ -34,6 +36,13 @@ Daily Horoscope App is a horoscope application that saves user's horoscope and s
 - `@kit.AbilityKit`,
 - `@kit.BackgroundTasksKit`, 
 - `@kit.SensorServiceKit`
+
+## Required Permissions
+
+- "ohos.permission.KEEP_BACKGROUND_RUNNING",
+- "ohos.permission.INTERNET",
+- "ohos.permission.VIBRATE",
+- "ohos.permission.PUBLISH_AGENT_REMINDER"
 
 # Directory Structure
 
@@ -60,13 +69,6 @@ entry/src/main/ets/
 ## Supported Devices
 
 - Huawei Watch 5
-
-## Required Permissions
-
-- "ohos.permission.KEEP_BACKGROUND_RUNNING",
-- "ohos.permission.INTERNET",
-- "ohos.permission.VIBRATE",
-- "ohos.permission.PUBLISH_AGENT_REMINDER"
 
 # LICENSE
 

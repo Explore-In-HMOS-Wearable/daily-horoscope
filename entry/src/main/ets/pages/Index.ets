@@ -1,31 +1,41 @@
 import { getPermission } from '../utils/Utils'
 import common from '@ohos.app.ability.common'
+import { HomePageBuilder, HOME_PAGE } from './HomePage';
+import { HoroscopePageBuilder, HOROSCOPE_PAGE } from './HoroscopePage';
+import { SwiperPageBuilder, SWIPER_PAGE } from './SwiperPage';
 
 @Entry
 @Component
 struct Index {
+  @Provide('NavPathStack') pageStack: NavPathStack = new NavPathStack()
+
+  @Builder
+  PageMap(name: string) {
+    if (name === HOME_PAGE) {
+      HomePageBuilder();
+    } else if (name === HOROSCOPE_PAGE) {
+      HoroscopePageBuilder()
+    } else if (name === SWIPER_PAGE) {
+      SwiperPageBuilder()
+    }
+  }
 
   aboutToAppear(): void {
     getPermission(this.getUIContext().getHostContext() as common.UIAbilityContext)
   }
+
   build() {
-    Column() {
-      Text('Daily Horoscope App🔮✨')
-        .fontWeight(FontWeight.Bolder)
-        .fontColor('#FFD73B')
-        .fontSize(20)
-        .width('75%')
-        .margin({bottom:12})
-      Text('Enable notifications to see your daily comment each morning!')
-        .margin(({left:12, right:12}))
-    }.onClick(() => {
-      this.getUIContext().getRouter().pushUrl({
-        url:'pages/HoroscopePage'
-      })
+    Navigation(this.pageStack) {
+    }
+    .onAppear(() => {
+      this.pageStack.pushPathByName(HOME_PAGE, null, false);
     })
-    .justifyContent(FlexAlign.Center)
-    .backgroundImage($r('app.media.stars'), ImageRepeat.X)
-    .height('100%')
     .width('100%')
+    .height('100%')
+    .hideNavBar(true)
+    .hideTitleBar(true)
+    .hideBackButton(true)
+    .ignoreLayoutSafeArea()
+    .navDestination(this.PageMap)
   }
 }

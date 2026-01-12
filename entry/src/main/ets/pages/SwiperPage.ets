@@ -2,7 +2,13 @@ import { HoroscopeComponent } from '../components/HoroscopeComponent';
 import { IHoroscope } from '../model/Horoscope';
 import { HoroscopeViewModel } from '../viewmodel/HoroscopeViewModel';
 
-@Entry
+export const SWIPER_PAGE = 'SwiperPage';
+
+@Builder
+export function SwiperPageBuilder() {
+  SwiperPage();
+}
+
 @Component
 export struct SwiperPage {
   private viewModel: HoroscopeViewModel = new HoroscopeViewModel()
@@ -10,10 +16,8 @@ export struct SwiperPage {
   @State currentIndex: number = 0
   horoscope: IHoroscope = {} as IHoroscope;
 
-  aboutToAppear(): void {
-    const horoscopeParams = this.getUIContext().getRouter().getParams() as IHoroscope
-    this.horoscope = horoscopeParams
-
+  private handlePageParams(params: IHoroscope) {
+    this.horoscope = params
     this.viewModel.listHoroscopes().then((result: IHoroscope[]) => {
       this.horoscopeList = result
 
@@ -27,13 +31,22 @@ export struct SwiperPage {
   }
 
   build() {
-    Swiper() {
-      ForEach(this.horoscopeList, (zodiac: IHoroscope, index: number) => {
-        HoroscopeComponent({ horoscope: zodiac })
-      }, (zodiac: IHoroscope, index: number) => `${index}${zodiac.sign}` )
+    NavDestination() {
+      Swiper() {
+        ForEach(this.horoscopeList, (zodiac: IHoroscope) => {
+          HoroscopeComponent({ horoscope: zodiac })
+        }, (zodiac: IHoroscope) => `${zodiac.sign}`)
+      }
+      .index(this.currentIndex)
+      .height('100%')
+      .width('100%')
     }
-    .index(this.currentIndex)
-    .height('100%')
     .width('100%')
+    .height('100%')
+    .hideTitleBar(true)
+    .hideBackButton(true)
+    .onReady((context: NavDestinationContext) => {
+      this.handlePageParams(context.pathInfo.param as IHoroscope)
+    })
   }
 }

@@ -11,7 +11,7 @@ export function sendDailyHoroscopeNotification(horoscopeSign: string): void {
   const wantAgentInfo: wantAgent.WantAgentInfo = {
     wants: [
       {
-        bundleName: 'com.hmosdemos.dailyhoroscopeapp',
+        bundleName: 'com.hmosdemos.wearable.daily_horoscope',
         abilityName: 'EntryAbility',
         parameters: {
           url: 'pages/SwiperPage',
