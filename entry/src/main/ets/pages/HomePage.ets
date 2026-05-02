@@ -16,7 +16,7 @@ struct HomePage {
         Text('Daily Horoscope App🔮✨')
           .fontWeight(FontWeight.Bolder)
           .fontColor('#FFD73B')
-          .fontSize(20)
+          .fontSize(18)
           .width('75%')
           .margin({bottom:12})
         Text('Enable notifications to see your daily comment each morning!')

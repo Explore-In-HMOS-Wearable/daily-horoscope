@@ -1,9 +1,7 @@
-> **Note:** To access all shared projects, get information about environment setup, and view other guides, please visit [Explore-In-HMOS-Wearable Index](https://github.com/Explore-In-HMOS-Wearable/hmos-index).
-
 # DailyHoroscopeApp
 
-Daily Horoscope App is a horoscope application that saves user's horoscope and send daily reminders each morning. Also users can read other horoscope's daily comments with swiper functionality.
-
+A comprehensive wearable horoscope application for HarmonyOS smartwatches. Select your zodiac sign by birthdate, receive daily morning reminders, and explore all 12 signs with swiper navigation.
+Features moon phase tracking, favorite signs bookmarking, elemental compatibility badges, daily tarot cards, habit-building streak counter, and real-time heart rate integration for personalized guidance. Optimized for circular screens with offline-first design.
 # Preview
 
 <p align="left">
@@ -15,11 +13,15 @@ Daily Horoscope App is a horoscope application that saves user's horoscope and s
 
 # Use Cases
 
-- User can select birth date and see her/his own horoscope.
-- By clicking the horoscope the horoscope date is being saved to the storage.
-- Swiper page is shown starts with the user's horoscope.
-- By swiping other zodiac's descriptions can be read.
-- Daily notifications come to the wearable device.
+- User selects birth date to discover their zodiac sign
+- Clicking the sign saves it to storage and enables daily notifications
+- Swiper page opens showing user's horoscope first
+- Swipe to explore all 12 zodiac signs with descriptions
+- Daily morning reminders delivered to wearable device
+- Star favorite signs for quick access with filter toggle
+- View moon phase, daily tarot card, and elemental compatibility
+- Track daily visit streak to build consistent habits
+- Real-time heart rate reading provides personalized state-based guidance
 
 # Technology
  
@@ -43,6 +45,7 @@ Daily Horoscope App is a horoscope application that saves user's horoscope and s
 - "ohos.permission.INTERNET",
 - "ohos.permission.VIBRATE",
 - "ohos.permission.PUBLISH_AGENT_REMINDER"
+- "ohos.permission.READ_HEALTH_DATA"
 
 # Directory Structure
 
@@ -50,20 +53,27 @@ Daily Horoscope App is a horoscope application that saves user's horoscope and s
 entry/src/main/ets/
 |---components      
 |   |---HoroscopeComponent.ets
-|---entryability                   
-|---entrybackupability   
 |---model      
 |   |---Horoscope.ets
+|   |---TarotDeck.ets
+|   |---ZodiacMeta.ets
 |---pages
 |   |---HoroscopePage.ets   
+|   |---HomePage.ets   
 |   |---Index.ets   
-|   |---SwiperPage.ets                
+|   |---SwiperPage.ets         
+|---services
+|   |---FavoritesService.ets      
+|   |---HeartRateService.ets    
+|   |---StreakService.ets   
 |---utils      
 |   |---Logger.ets      
-|   |---Notification.ets     
+|   |---Notification.ets    
+|   |---MoonPhaseCalculator.ets     
 |   |---Utils.ets  
 |---viewmodel      
-|   |---HoroscopeViewModel.ets                                               
+|   |---HoroscopeViewModel.ets  
+|   |---HeartRateViewModel.ets                                         
 ```
 # Constraints and Restrictions
 ## Supported Devices
@@ -73,4 +83,4 @@ entry/src/main/ets/
 # LICENSE
 
 Daily Horoscope App is distributed under the terms of the MIT License.
-See the [license](/LICENSE) for more information.
+See the [license](./LICENSE) for more information.

@@ -1,4 +1,8 @@
-import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import {
+  abilityAccessCtrl,
+  AbilityConstant, ConfigurationConstant,
+  PermissionRequestResult,
+  Permissions, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
@@ -25,6 +29,14 @@ export default class EntryAbility extends UIAbility {
       }
       hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
     });
+
+    const permissions: Permissions[] = ['ohos.permission.READ_HEALTH_DATA'];
+    let atManager = abilityAccessCtrl.createAtManager()
+    atManager.requestPermissionsFromUser(this.context, permissions).then((result: PermissionRequestResult) => {
+      console.info(`get Permission success, result: ${JSON.stringify(result)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`get Permission error, error. Code: ${error.code}, message: ${error.message}`);
+    })
   }
 
   onWindowStageDestroy(): void {
